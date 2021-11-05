@@ -16,13 +16,21 @@ int main(int argc, char const *argv[])
 
     map<string, simpleObject> simpleMap;
 
+    //Ways to insert into a map \
+    using .insert() method. It takes a pair of the map type \
+    and returns a pair of iterator and bool
+
+    //Using pair<key-type, value-type> (key, value)
     simpleMap.insert(pair<string, simpleObject>("first", simpleObject()));
     simpleMap.insert(pair<string, simpleObject>("second", simpleObject(3, 4, "second")));
 
-    simpleMap.insert({"third", simpleObject(5, 6, "third")}); //initializer list creates a pair.
-
+    //Using initializer list, which creates a pair.
+    simpleMap.insert({"third", simpleObject(5, 6, "third")}); 
+    
+    //Using the [] operator
     simpleMap["fourth"] = simpleObject(7, 8, "fourth");
 
+    //Using make_pair(key, value)
     simpleMap.insert(make_pair("fifth", simpleObject(9, 10, "fifth")));
 
     //Insertion with insert() returns a pair<iterator, bool> \
@@ -40,7 +48,7 @@ int main(int argc, char const *argv[])
     cout << "-----------------" << endl;
     cout << "printing simpleMap" << endl;
     cout << "simpleMap.size() = " << simpleMap.size() << endl;
-    
+
     cout << "Notice that the elements are printed in a random order" << endl;
 
     //Go through each element in the map
@@ -76,7 +84,7 @@ int main(int argc, char const *argv[])
     }
 
     //Find an element with find()
-   auto search_result = simpleMap.find("second");
+    auto search_result = simpleMap.find("second");
     if (search_result != simpleMap.end())
     {
         cout << "Search result: Found. " << search_result->first << " " << search_result->second.a << " " << search_result->second.b << " " << search_result->second.c << endl;
