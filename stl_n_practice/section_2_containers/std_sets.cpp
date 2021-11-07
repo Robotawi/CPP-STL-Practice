@@ -38,5 +38,27 @@ int main(int argc, char const *argv[])
         cout << w << ", ";
     }
 
+    //Remove duplicates due to non alphabetic chars
+
+    for (auto it = words_set.begin(); it != words_set.end();)
+    {
+        string word_trim = *it;
+        word_trim.erase(remove_if(word_trim.begin(), word_trim.end(), [](auto &c)
+                                  { return !isalpha(c); }),
+                        word_trim.end());
+
+        if (word_trim != *it)
+        {
+            it = words_set.erase(it); //notice this point very well
+            words_set.insert(word_trim);
+        }
+        else
+        {
+            it++;
+        }
+    }
+
+    cout << "Unique words number after trimming is " << words_set.size() << endl;
+
     return 0;
 }
