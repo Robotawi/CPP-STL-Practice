@@ -43,9 +43,17 @@ int main(int argc, char const *argv[])
         }
     }
 
-    for (auto &elem : wordPositions)
+    // cout one value per all occurrences in the multimap, and loop over them 
+    for (auto it = wordPositions.cbegin(), it2 = it; it != wordPositions.end(); it = it2)
     {
-        cout << "Word: " << elem.first << " appears in line " << elem.second.first << " at position " << elem.second.second << endl;
+        unsigned int count = wordPositions.count(it->first);
+        cout << "Word: \"" << it->first << "\" occurs " << count << " times and appears in\n";
+        for (; it2->first == it->first && it2 != wordPositions.cend(); it2++)
+        {
+            cout << "line " << it2->second.first << " at position " << it2->second.second << endl;
+        }
     }
+
+
     return 0;
 }
